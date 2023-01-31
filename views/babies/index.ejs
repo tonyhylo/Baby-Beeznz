@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<h1>Baby List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Write the line of EJS to iterate over movies using forEach -->
+    <% baby.forEach(function(b) { %>
+    <tr>
+      <td><%= b.name %></td>
+      <td><%= b.dob %></td>
+      <td><a href="/babies/<%= b._id %>">DETAILS</a></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
