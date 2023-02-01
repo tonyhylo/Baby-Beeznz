@@ -1,14 +1,100 @@
 <%- include('../partials/header') %>
 
-<table>
-  <tbody>
-    <th>Name</th>
-    <th>Date of Birth</th>
-    <tr>
-      <td><%= baby.name %></td>
-      <td><%= baby.dob %></td>
-    </tr>
-  </tbody>
-</table>
+<section>
+  <table>
+    <tbody>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <tr>
+        <td><%= baby.name %></td>
+        <td><%= baby.dob.toLocaleDateString() %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<br /><br /><br />
+<section>
+  <h3>FEEDS</h3>
+  <% if (!baby.feeds.length) { %>
+   <%= "No feeds recorded." %>
+  <%  } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Quantity (oz)</th>
+        <th>Duration (min)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% baby.feeds.forEach(function(f) { %>
+      <tr>
+        <td><%= f.date.toLocaleDateString() %></td>
+        <td><%= f.date.toLocaleTimeString() %></td>
+        <td><%= f.quantity %></td>
+        <td><%= f.duration %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% }; %>
+</section>
+<br /><br /><br />
+<section>
+  <h2>Add A Feed</h2>
+  <form id="add-feed-form" method="POST" action="/babies/<%= baby._id %>/feeds">
+    <label>Date/Time: </label>
+    <input type="datetime-local" name="date" /><br />
+    <label>Quantity: </label>
+    <input type="number" name="quantity" /><a style="color: black"> oz.</a
+    ><br />
+    <label>Duration: </label>
+    <input type="number" name="duration" /><a style="color: black"> min.</a
+    ><br />
+    <input type="submit" value="Add Feed" />
+  </form>
+</section>
+<br /><br /><br />
+<section>
+  <h3>BOWEL MOVEMENTS</h3>
+  <% if (!baby.bms.length) { %>
+    <%= "No dirty diapers recorded." %>
+   <%  } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Diaper</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% baby.bms.forEach(function(b) { %>
+      <tr>
+        <td><%= b.date.toLocaleDateString() %></td>
+        <td><%= b.date.toLocaleTimeString() %></td>
+        <td><%= b.bm %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% }; %>
+</section>
+<br /><br /><br />
+<section>
+  <h2>Add A Dirty Diaper</h2>
+  <form id="add-bm-form" method="POST" action="/babies/<%= baby._id %>/bms">
+    <label>Date/Time: </label>
+    <input type="datetime-local" name="date" /><br />
+    <label>Type: </label>
+    <select name="bm">
+      <option value="Wet">Wet</option>
+      <option value="Mix">Mix</option>
+  </select> 
+    <br />
+    <input type="submit" value="Add Diaper" />
+  </form>
+</section>
 
 <%- include('../partials/footer') %>
