@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 
 <h2>Enter a New Baby</h2>
+<% if (user) { %>
 <form action="/babies" method="POST">
   <label
     >Name:
@@ -12,5 +13,8 @@
   ><br />
   <input type="submit" value="Add Baby" />
 </form>
+<% } else { %>
+  <%= "Log in to enter a new baby" %>
+  <% }; %>
 
 <%- include('../partials/footer') %>

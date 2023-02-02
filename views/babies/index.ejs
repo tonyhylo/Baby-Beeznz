@@ -14,7 +14,7 @@
     <% baby.forEach(function(b) { %>
     <tr>
       <td><%= b.name %></td>
-      <td><%= b.dob %></td>
+      <td><%= b.dob.toLocaleDateString() %></td>
       <td><a href="/babies/<%= b._id %>">DETAILS</a></td>
     </tr>
     <% }); %>

@@ -33,7 +33,7 @@
         <td><%= f.date.toLocaleDateString() %></td>
         <td><%= f.date.toLocaleTimeString() %></td>
         <td><%= f.quantity %></td>
-        <td><%= f.duration %></td>
+        <td><%= f.duration ? f.duration : "N/A" %></td>
       </tr>
       <% }); %>
     </tbody>
@@ -43,6 +43,7 @@
 <br /><br /><br />
 <section>
   <h2>Add A Feed</h2>
+  <% if (user) { %>
   <form id="add-feed-form" method="POST" action="/babies/<%= baby._id %>/feeds">
     <label>Date/Time: </label>
     <input type="datetime-local" name="date" /><br />
@@ -54,6 +55,9 @@
     ><br />
     <input type="submit" value="Add Feed" />
   </form>
+  <% } else { %>
+    <%= "Log in to add a feed." %>
+    <% }; %>
 </section>
 <br /><br /><br />
 <section>
@@ -84,6 +88,7 @@
 <br /><br /><br />
 <section>
   <h2>Add A Dirty Diaper</h2>
+  <% if (user) { %>
   <form id="add-bm-form" method="POST" action="/babies/<%= baby._id %>/bms">
     <label>Date/Time: </label>
     <input type="datetime-local" name="date" /><br />
@@ -95,6 +100,9 @@
     <br />
     <input type="submit" value="Add Diaper" />
   </form>
+  <% } else { %>
+    <%= "Log in to add a dirty diaper." %>
+    <% }; %>
 </section>
 
 <%- include('../partials/footer') %>
