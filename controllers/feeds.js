@@ -2,7 +2,8 @@ const Baby = require('../models/baby');
  
 module.exports = {
   create,
-  delete: deleteFeed
+  delete: deleteFeed,
+  update,
 };
 
 function create(req, res) {
@@ -26,3 +27,10 @@ function deleteFeed(req, res) {
   })
 }
  
+function update(req, res) {
+  console.log(req.body);
+  // The model is responsible for creating data
+  Baby.update(req.body, Number(req.params.id));
+  // Do a redirect anytime data is changed
+  res.redirect(`/babies/${req.params.id}`);
+}
