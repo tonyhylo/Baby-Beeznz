@@ -11,5 +11,7 @@ router.post('/', babiesCtrl.create);
 router.get('/', babiesCtrl.index);
 // GET /babies/:id
 router.get('/:id', babiesCtrl.show);
+// DELETE /babies/:_id
+router.delete('/:id', babiesCtrl.delete);
 
 module.exports = router;

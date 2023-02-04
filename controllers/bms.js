@@ -1,7 +1,8 @@
 const Baby = require('../models/baby');
  
 module.exports = {
-  create
+  create,
+  delete: deleteBm
 };
 
 function create(req, res) {
@@ -12,5 +13,16 @@ function create(req, res) {
         res.redirect(`/babies/${baby._id}`);
       });
     });
+  }
+
+  function deleteBm(req, res) {
+    console.log(req.params.id)
+    Baby.findOne({
+      'bms._id': req.params.id
+    })
+    .then((baby) => {
+      baby.bms.remove(req.params.id);
+      baby.save().then(() => res.redirect(`/babies/${baby._id}`))
+    })
   }
  

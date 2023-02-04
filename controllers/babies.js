@@ -27,9 +27,24 @@ function show(req, res) {
   })
 }
 
+function deleteBaby(req, res) {
+  Baby.findOne({
+    '_id': req.params.id
+  })
+  .then((baby) => {
+    baby.remove(req.params.id);
+    baby.save(function(err) {
+      Baby.find({}, function(err, baby) {
+        res.render('babies/index', {title: "Baby Beeznz", baby});
+      });
+    });
+  });
+};
+
 module.exports = {
   new: newBaby,
   create,
   index,
-  show
+  show,
+  delete: deleteBaby
 };

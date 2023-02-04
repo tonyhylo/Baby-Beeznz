@@ -1,7 +1,8 @@
 const Baby = require('../models/baby');
  
 module.exports = {
-  create
+  create,
+  delete: deleteFeed
 };
 
 function create(req, res) {
@@ -13,4 +14,15 @@ function create(req, res) {
       });
     });
   }
+
+function deleteFeed(req, res) {
+  console.log(req.params.id)
+  Baby.findOne({
+    'feeds._id': req.params.id
+  })
+  .then((baby) => {
+    baby.feeds.remove(req.params.id);
+    baby.save().then(() => res.redirect(`/babies/${baby._id}`))
+  })
+}
  
