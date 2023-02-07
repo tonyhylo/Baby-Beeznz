@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-
 <section>
   <table>
     <tbody>
@@ -25,8 +24,9 @@
   </table>
 </section>
 <br /><br /><br />
+<section id="left-section">
 <section>
-  <h3>FEEDS</h3>
+  <h2 class="h-title">FEEDS</h2>
   <% if (!baby.feeds.length) { %> <%= "No feeds recorded." %> <% } else { %>
   <table>
     <thead>
@@ -58,13 +58,7 @@
           <% }; %>
         </td>
         <td>
-          <form>
-            <input type="button" value="updateFeed"  onclick="window.location.href='updateFeed';"/>
-          </form>
-          <!-- <form action="/feeds/<%= f.id %>?_method=PUT"
-            class="update-form" method="POST">
-            <button type="submit">UPDATE</button>
-          </form> -->
+          <!-- <a href="/<%= f.id %>/edit">EDIT</a> -->
         </td>
       </tr>
       <% }); %>
@@ -74,7 +68,7 @@
 </section>
 <br /><br /><br />
 <section>
-  <h2>Add A Feed</h2>
+  <h2 class="h-title">Add A Feed</h2>
   <% if (user) { %>
   <form id="add-feed-form" method="POST" action="/babies/<%= baby._id %>/feeds">
     <label>Date/Time: </label>
@@ -89,9 +83,10 @@
   </form>
   <% } else { %> <%= "Log in to add a feed." %> <% }; %>
 </section>
-<br /><br /><br />
+</section>
+<section id="right-section">
 <section>
-  <h3>BOWEL MOVEMENTS</h3>
+  <h2 class="h-title">DIRTY DIAPERS</h2>
   <% if (!baby.bms.length) { %> <%= "No dirty diapers recorded." %> <% } else {
   %>
   <table>
@@ -128,7 +123,7 @@
 </section>
 <br /><br /><br />
 <section>
-  <h2>Add A Dirty Diaper</h2>
+  <h2 class="h-title">Add A Dirty Diaper</h2>
   <% if (user) { %>
   <form id="add-bm-form" method="POST" action="/babies/<%= baby._id %>/bms">
     <label>Date/Time: </label>
@@ -142,6 +137,7 @@
     <input type="submit" value="Add Diaper" />
   </form>
   <% } else { %> <%= "Log in to add a dirty diaper." %> <% }; %>
+</section>
 </section>
 
 <%- include('../partials/footer') %>

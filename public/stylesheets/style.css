@@ -17,3 +17,51 @@ a {
 .login img {
   height: 30px;
 }
+
+nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: goldenrod;
+  padding: 20px;
+  position:  absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  
+}
+
+nav > a {
+  padding: 0 20px 0 30px;
+  color: black;
+}
+
+section {
+  margin: 50px 0 0 0;
+}
+
+#left-section {
+  float:left;
+  padding: 0 10em 0 10em;
+}
+
+#right-section {
+  float: right;
+  padding: 0 10em 0 10em;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+tr, th, td {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.h-title {
+  text-align: center;
+}
